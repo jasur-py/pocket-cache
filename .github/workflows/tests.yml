@@ -33,18 +33,22 @@ jobs:
         python -m pip install pytest pytest-cov pytest-asyncio coverage
         python -m pip install -e ".[test]"
         
-    - name: List installed packages
+    - name: Verify environment
       run: |
-        python -m pip list
+        echo "Current PATH: $PATH"
         echo "Python location: $(which python)"
+        echo "Python version: $(python --version)"
         echo "Pip location: $(which pip)"
+        echo "Pip version: $(pip --version)"
+        echo "Installed packages:"
+        python -m pip list
+        echo "Testing pytest installation:"
         python -m pytest --version
         
     - name: Run tests
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        export PATH="$pythonLocation/bin:$PATH"
         python -m pytest tests/ --cov=quickcache --cov-report=xml
         
     - name: Upload coverage to Codecov
