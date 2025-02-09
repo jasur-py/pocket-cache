@@ -11,7 +11,7 @@ requires-python = ">=3.8"
 license = "MIT"
 keywords = ["cache", "api", "http", "redis", "caching"]
 authors = [
-    { name = "Your Name", email = "your.email@example.com" },
+    { name = "Jasur Khojiev", email = "jasur.py@gmail.com" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -35,7 +35,7 @@ test = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
     "pytest-asyncio>=0.20.0",
-    "fakeredis>=2.0.0",
+    "coverage>=7.2.0",
 ]
 docs = [
     "sphinx>=4.0.0",
@@ -51,21 +51,36 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/quickcache"
+Homepage = "https://github.com/jasur-py/quickcache"
 Documentation = "https://quickcache.readthedocs.io/"
-Repository = "https://github.com/yourusername/quickcache.git"
-Issues = "https://github.com/yourusername/quickcache/issues"
+Repository = "https://github.com/jasur-py/quickcache.git"
+Issues = "https://github.com/jasur-py/quickcache/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=quickcache --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["quickcache"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
 
 [tool.black]
 line-length = 88
-target-version = ["py38"]
+target-version = ['py38']
+include = '\.pyi?$'
 
 [tool.isort]
 profile = "black"
 multi_line_output = 3
-
-[tool.mypy]
-python_version = "3.8"
-strict = true
-warn_return_any = true
-warn_unused_configs = true 
+line_length = 88
