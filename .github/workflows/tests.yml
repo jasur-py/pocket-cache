@@ -47,7 +47,7 @@ jobs:
         
     - name: Run tests
       env:
-        PYTHONPATH: ${{ github.workspace }}
+        PYTHONPATH: ${{ github.workspace }}/src
       run: |
         python -m pytest tests/ --cov=quickcache --cov-report=xml
         
