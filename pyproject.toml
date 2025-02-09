@@ -64,12 +64,14 @@ Issues = "https://github.com/jasur-py/quickcache/issues"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-v --cov=quickcache --cov-report=term-missing"
+addopts = "-v --cov=quickcache --cov-report=term-missing --cov-report=xml"
 asyncio_mode = "strict"
+pythonpath = ["."]
 
 [tool.coverage.run]
 source = ["quickcache"]
 omit = ["tests/*"]
+relative_files = true
 
 [tool.coverage.report]
 exclude_lines = [
@@ -80,6 +82,7 @@ exclude_lines = [
     "pass",
     "raise ImportError",
 ]
+show_missing = true
 
 [tool.black]
 line-length = 88
