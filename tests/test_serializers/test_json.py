@@ -1,5 +1,6 @@
+"""Tests for JSON serializer."""
 import pytest
-from quickcache.serializers.json import JSONSerializer
+from pocket_cache.serializers.json import JSONSerializer, SerializationError
 
 def test_json_serializer_string():
     serializer = JSONSerializer()

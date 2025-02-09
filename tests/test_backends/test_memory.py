@@ -1,7 +1,7 @@
 from datetime import timedelta
 import time
 import pytest
-from quickcache.backends.memory import MemoryCache
+from pocket_cache.backends.memory import MemoryCache
 
 def test_memory_backend_set_get():
     backend = MemoryCache()

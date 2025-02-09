@@ -1,9 +1,9 @@
 """
-Basic usage examples for QuickCache.
+Basic usage examples for PocketCache.
 """
-from quickcache import Cache
-from quickcache.backends import MemoryBackend, RedisBackend
-from quickcache.serializers import JSONSerializer
+from pocket_cache import Cache
+from pocket_cache.backends import MemoryBackend, RedisBackend
+from pocket_cache.serializers import JSONSerializer
 
 def basic_cache_operations():
     # Create a cache with default memory backend

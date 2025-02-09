@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "quickcache"
+name = "pocket-cache"
 version = "0.1.0"
 description = "A fast and flexible API response caching library"
 readme = "README.md"
@@ -52,24 +52,24 @@ dev = [
     "pre-commit>=2.0.0",
 ]
 all = [
-    "quickcache[test,docs,dev]"
+    "pocket-cache[test,docs,dev]"
 ]
 
 [project.urls]
-Homepage = "https://github.com/jasur-py/quickcache"
-Documentation = "https://quickcache.readthedocs.io/"
-Repository = "https://github.com/jasur-py/quickcache.git"
-Issues = "https://github.com/jasur-py/quickcache/issues"
+Homepage = "https://github.com/jasur-py/pocket-cache"
+Documentation = "https://pocket-cache.readthedocs.io/"
+Repository = "https://github.com/jasur-py/pocket-cache.git"
+Issues = "https://github.com/jasur-py/pocket-cache/issues"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-v --cov=quickcache --cov-report=term-missing --cov-report=xml"
+addopts = "-v --cov=pocket_cache --cov-report=term-missing --cov-report=xml"
 asyncio_mode = "strict"
 pythonpath = ["."]
 
 [tool.coverage.run]
-source = ["quickcache"]
+source = ["pocket_cache"]
 omit = ["tests/*"]
 relative_files = true
 

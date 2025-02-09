@@ -6,9 +6,9 @@ from time import sleep
 from datetime import timedelta
 import time
 
-from quickcache import Cache
-from quickcache.backends.memory import MemoryCache
-from quickcache.serializers.json import JSONSerializer
+from pocket_cache import Cache
+from pocket_cache.backends.memory import MemoryCache
+from pocket_cache.serializers.json import JSONSerializer
 
 @pytest.fixture
 def cache():

@@ -1,5 +1,5 @@
 """
-Core cache implementation for QuickCache.
+Core cache implementation for PocketCache.
 """
 from typing import Any, Optional, Type, TypeVar, Callable, Union
 from functools import wraps
@@ -8,12 +8,12 @@ from datetime import timedelta
 import hashlib
 import json
 
-from quickcache.backends.base import BaseBackend
-from quickcache.backends.memory import MemoryCache
-from quickcache.serializers.base import BaseSerializer
-from quickcache.serializers.json import JSONSerializer
-from quickcache.utils.key import generate_key
-from quickcache.utils.validation import validate_ttl
+from pocket_cache.backends.base import BaseBackend
+from pocket_cache.backends.memory import MemoryCache
+from pocket_cache.serializers.base import BaseSerializer
+from pocket_cache.serializers.json import JSONSerializer
+from pocket_cache.utils.key import generate_key
+from pocket_cache.utils.validation import validate_ttl
 
 T = TypeVar("T")
 

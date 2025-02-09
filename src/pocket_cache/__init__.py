@@ -1,4 +1,4 @@
-"""QuickCache - A fast and flexible API response caching library."""
+"""PocketCache - A fast and flexible API response caching library."""
 
 from .cache import Cache
 from .backends.base import BaseBackend

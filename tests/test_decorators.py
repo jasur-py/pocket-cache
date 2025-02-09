@@ -1,4 +1,4 @@
-from quickcache.utils.decorators import cached
+from pocket_cache.utils.decorators import cached
 import time
 
 def test_cached_decorator():
