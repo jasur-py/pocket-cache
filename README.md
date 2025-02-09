@@ -1,8 +1,8 @@
-# QuickCache
+# PocketCache
 
-A fast and flexible API response caching library for Python that helps you improve application performance by caching expensive operations and API responses. QuickCache provides a simple yet powerful interface with support for multiple storage backends, serialization formats, and both synchronous and asynchronous operations.
+A fast and flexible API response caching library for Python that helps you improve application performance by caching expensive operations and API responses. PocketCache provides a simple yet powerful interface with support for multiple storage backends, serialization formats, and both synchronous and asynchronous operations.
 
-## Why QuickCache?
+## Why PocketCache?
 
 - **Simple Interface**: Easy to use with an intuitive API that feels natural in Python
 - **Flexible Storage**: Choose from memory, Redis, or filesystem storage, or implement your own backend
@@ -22,7 +22,7 @@ A fast and flexible API response caching library for Python that helps you impro
 
 ## Performance and Reliability
 
-QuickCache is designed with performance in mind:
+PocketCache is designed with performance in mind:
 
 - **Minimal Overhead**: Less than 1ms overhead per cache operation in memory backend
 - **Thread-Safe**: All operations are thread-safe by default
@@ -45,7 +45,7 @@ Redis Backend (operations/second):
 
 ## Real-World Usage
 
-QuickCache is used in production by various applications:
+PocketCache is used in production by various applications:
 
 - High-traffic web applications serving millions of requests
 - Data processing pipelines caching intermediate results
@@ -55,7 +55,7 @@ QuickCache is used in production by various applications:
 
 ## Comparison with Alternatives
 
-Here's how QuickCache compares to other popular caching solutions:
+Here's how PocketCache compares to other popular caching solutions:
 
 ### vs Django Cache
 
@@ -103,14 +103,14 @@ Here's how QuickCache compares to other popular caching solutions:
 ## Installation
 
 ```bash
-pip install quickcache
+pip install pocket-cache
 ```
 
 ## Quick Start
 
 ```python
-from quickcache import Cache
-from quickcache.utils.decorators import cached
+from pocket_cache import Cache
+from pocket_cache.utils.decorators import cached
 
 # Create a cache instance
 cache = Cache()
@@ -126,7 +126,7 @@ def expensive_operation(x):
     return x * 2
 
 # Using with Redis backend
-from quickcache.backends.redis import RedisCache
+from pocket_cache.backends.redis import RedisCache
 from redis import Redis
 
 redis_client = Redis(host='localhost', port=6379)
@@ -135,12 +135,12 @@ cache = Cache(backend=RedisCache(redis_client))
 
 ## Configuration
 
-QuickCache can be configured with different backends and serializers:
+PocketCache can be configured with different backends and serializers:
 
 ```python
-from quickcache import Cache
-from quickcache.backends.redis import RedisCache
-from quickcache.serializers.pickle import PickleSerializer
+from pocket_cache import Cache
+from pocket_cache.backends.redis import RedisCache
+from pocket_cache.serializers.pickle import PickleSerializer
 from datetime import timedelta
 
 cache = Cache(
@@ -155,7 +155,7 @@ cache = Cache(
 ### Custom Backend
 
 ```python
-from quickcache.backends.base import BaseCacheBackend
+from pocket_cache.backends.base import BaseCacheBackend
 from datetime import timedelta
 
 class MyCustomBackend(BaseCacheBackend):
@@ -179,7 +179,7 @@ class MyCustomBackend(BaseCacheBackend):
 ### Custom Serializer
 
 ```python
-from quickcache.serializers.base import BaseSerializer
+from pocket_cache.serializers.base import BaseSerializer
 import msgpack
 
 class MsgPackSerializer(BaseSerializer):
@@ -196,8 +196,8 @@ class MsgPackSerializer(BaseSerializer):
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/quickcache.git
-cd quickcache
+git clone https://github.com/yourusername/pocket-cache.git
+cd pocket-cache
 ```
 
 2. Create and activate a virtual environment:
@@ -223,7 +223,7 @@ pre-commit install
 pytest
 
 # Run with coverage
-pytest --cov=quickcache
+pytest --cov=pocket_cache
 
 # Run specific test file
 pytest tests/test_cache.py
@@ -268,4 +268,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Documentation
 
-Full documentation is available at [https://quickcache.readthedocs.io/](https://quickcache.readthedocs.io/) 
+Full documentation is available at [https://pocketcache.readthedocs.io/](https://pocketcache.readthedocs.io/) 

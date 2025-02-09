@@ -1,6 +1,6 @@
-# Contributing to QuickCache
+# Contributing to PocketCache
 
-We love your input! We want to make contributing to QuickCache as easy and transparent as possible, whether it's:
+We love your input! We want to make contributing to PocketCache as easy and transparent as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -23,8 +23,8 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 
 1. Clone your fork of the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/quickcache.git
-cd quickcache
+git clone https://github.com/YOUR_USERNAME/pocket-cache.git
+cd pocket-cache
 ```
 
 2. Create a virtual environment and activate it:
@@ -66,7 +66,7 @@ flake8 src tests examples
 4. Tests:
 ```bash
 pytest
-pytest --cov=quickcache  # Check coverage
+pytest --cov=pocket_cache  # Check coverage
 ```
 
 ## Pull Request Process
@@ -79,9 +79,9 @@ pytest --cov=quickcache  # Check coverage
 
 In short, when you submit code changes, your submissions are understood to be under the same [MIT License](LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using GitHub's [issue tracker](https://github.com/yourusername/quickcache/issues)
+## Report bugs using GitHub's [issue tracker](https://github.com/jasur-py/pocket-cache/issues)
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/yourusername/quickcache/issues/new).
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/jasur-py/pocket-cache/issues/new).
 
 ## Write bug reports with detail, background, and sample code
 
