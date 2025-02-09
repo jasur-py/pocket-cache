@@ -2,13 +2,12 @@
 In-memory cache backend implementation.
 """
 from typing import Optional, Dict, Tuple
-import time
 import threading
 from datetime import datetime, timedelta
 
-from quickcache.backends.base import BaseBackend
+from .base import BaseBackend
 
-class MemoryBackend(BaseBackend):
+class MemoryCache(BaseBackend):
     """
     Simple in-memory cache backend using a dictionary.
     Thread-safe implementation.
@@ -47,7 +46,7 @@ class MemoryBackend(BaseBackend):
         Args:
             key: Cache key
             value: Value to store as bytes
-            ttl: Time-to-live in seconds
+            ttl: Time-to-live
         """
         expiry = datetime.now() + ttl
         with self._lock:
@@ -70,4 +69,4 @@ class MemoryBackend(BaseBackend):
     
     def close(self) -> None:
         """No resources to close for memory backend."""
-        pass 
+        pass

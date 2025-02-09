@@ -8,7 +8,7 @@ from datetime import timedelta
 import hashlib
 import json
 
-from quickcache.backends.base import BaseCacheBackend
+from quickcache.backends.base import BaseBackend
 from quickcache.backends.memory import MemoryCache
 from quickcache.serializers.base import BaseSerializer
 from quickcache.serializers.json import JSONSerializer
@@ -24,7 +24,7 @@ class Cache:
     
     def __init__(
         self,
-        backend: Optional[BaseCacheBackend] = None,
+        backend: Optional[BaseBackend] = None,
         serializer: Optional[BaseSerializer] = None,
         default_ttl: Union[int, timedelta] = 300,
     ):

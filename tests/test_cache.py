@@ -7,15 +7,14 @@ from datetime import timedelta
 import time
 
 from quickcache import Cache
-from quickcache.backends import MemoryBackend
-from quickcache.serializers import JSONSerializer
 from quickcache.backends.memory import MemoryCache
+from quickcache.serializers.json import JSONSerializer
 
 @pytest.fixture
 def cache():
     """Create a cache instance for testing."""
     return Cache(
-        backend=MemoryBackend(),
+        backend=MemoryCache(),
         serializer=JSONSerializer(),
         default_ttl=60
     )
