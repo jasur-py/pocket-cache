@@ -37,6 +37,7 @@ test = [
     "pytest-asyncio>=0.20.0",
     "coverage>=7.2.0",
     "fakeredis>=2.0.0",
+    "pytest-xdist>=3.0.0",
 ]
 docs = [
     "sphinx>=4.0.0",
@@ -50,6 +51,9 @@ dev = [
     "mypy>=0.900",
     "pre-commit>=2.0.0",
 ]
+all = [
+    "quickcache[test,docs,dev]"
+]
 
 [project.urls]
 Homepage = "https://github.com/jasur-py/quickcache"
@@ -61,6 +65,7 @@ Issues = "https://github.com/jasur-py/quickcache/issues"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-v --cov=quickcache --cov-report=term-missing"
+asyncio_mode = "strict"
 
 [tool.coverage.run]
 source = ["quickcache"]
