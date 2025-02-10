@@ -19,6 +19,22 @@ def cache():
         default_ttl=60
     )
 
+def test_cache_initialization():
+    """Test cache initialization with different parameters."""
+    # Default initialization
+    cache1 = Cache()
+    assert isinstance(cache1.backend, MemoryCache)
+    assert isinstance(cache1.serializer, JSONSerializer)
+    assert cache1.default_ttl == timedelta(seconds=300)
+
+    # Custom TTL with int
+    cache2 = Cache(default_ttl=60)
+    assert cache2.default_ttl == timedelta(seconds=60)
+
+    # Custom TTL with timedelta
+    cache3 = Cache(default_ttl=timedelta(minutes=5))
+    assert cache3.default_ttl == timedelta(minutes=5)
+
 def test_basic_operations(cache):
     """Test basic cache operations."""
     # Test set and get
@@ -33,13 +49,23 @@ def test_basic_operations(cache):
     cache.delete("key1")
     assert cache.get("key1") is None
 
-def test_ttl(cache):
-    """Test time-to-live functionality."""
-    cache.set("key1", "value1", ttl=1)  # 1 second TTL
+def test_ttl_variations(cache):
+    """Test different TTL specifications."""
+    # Test with int TTL
+    cache.set("key1", "value1", ttl=1)
     assert cache.get("key1") == "value1"
-    
-    sleep(1.1)  # Wait for TTL to expire
+    sleep(1.1)
     assert cache.get("key1") is None
+
+    # Test with timedelta TTL
+    cache.set("key2", "value2", ttl=timedelta(seconds=1))
+    assert cache.get("key2") == "value2"
+    sleep(1.1)
+    assert cache.get("key2") is None
+
+    # Test with default TTL
+    cache.set("key3", "value3")  # Uses default_ttl
+    assert cache.get("key3") == "value3"
 
 def test_clear(cache):
     """Test cache clearing."""
@@ -50,27 +76,86 @@ def test_clear(cache):
     assert cache.get("key1") is None
     assert cache.get("key2") is None
 
-def test_cached_decorator(cache):
-    """Test the @cached decorator."""
+def test_cached_decorator_variations(cache):
+    """Test different variations of the @cached decorator."""
     call_count = 0
     
-    @cache.cached(ttl=60)
-    def expensive_operation(x):
+    # Basic caching
+    @cache.cached()
+    def func1(x):
         nonlocal call_count
         call_count += 1
         return x * 2
-    
-    # First call should compute
-    assert expensive_operation(5) == 10
+
+    # Custom TTL
+    @cache.cached(ttl=1)
+    def func2(x):
+        nonlocal call_count
+        call_count += 1
+        return x * 3
+
+    # Custom key prefix
+    @cache.cached(key_prefix="custom")
+    def func3(x):
+        nonlocal call_count
+        call_count += 1
+        return x * 4
+
+    # Custom key generator
+    def custom_key_gen(*args, **kwargs):
+        return f"custom_key:{args[0]}"
+
+    @cache.cached(key_generator=custom_key_gen)
+    def func4(x):
+        nonlocal call_count
+        call_count += 1
+        return x * 5
+
+    # Test basic caching
+    assert func1(5) == 10
+    assert func1(5) == 10
     assert call_count == 1
-    
-    # Second call should use cache
-    assert expensive_operation(5) == 10
-    assert call_count == 1  # Call count shouldn't increase
-    
-    # Different argument should compute
-    assert expensive_operation(10) == 20
-    assert call_count == 2
+
+    # Test custom TTL
+    assert func2(5) == 15
+    assert func2(5) == 15
+    sleep(1.1)
+    assert func2(5) == 15  # Should recompute
+    assert call_count == 3
+
+    # Test custom key prefix
+    assert func3(5) == 20
+    assert func3(5) == 20
+    assert call_count == 4
+
+    # Test custom key generator
+    assert func4(5) == 25
+    assert func4(5) == 25
+    assert call_count == 5
+
+def test_complex_data_types(cache):
+    """Test caching of complex data types."""
+    # Dictionary
+    data_dict = {"a": 1, "b": [1, 2, 3], "c": {"nested": True}}
+    cache.set("dict_key", data_dict)
+    assert cache.get("dict_key") == data_dict
+
+    # List
+    data_list = [1, "two", {"three": 3}, [4, 5, 6]]
+    cache.set("list_key", data_list)
+    assert cache.get("list_key") == data_list
+
+    # Mixed data
+    data_mixed = {
+        "string": "value",
+        "number": 42,
+        "list": [1, 2, 3],
+        "dict": {"a": 1},
+        "boolean": True,
+        "null": None
+    }
+    cache.set("mixed_key", data_mixed)
+    assert cache.get("mixed_key") == data_mixed
 
 def test_cache_set_get():
     cache = Cache()
