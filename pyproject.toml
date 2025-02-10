@@ -64,7 +64,7 @@ Issues = "https://github.com/jasur-py/pocket-cache/issues"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-v --cov=pocket_cache --cov-report=term-missing --cov-report=xml"
+addopts = "-v --cov=pocket_cache --cov-report=term-missing --cov-report=xml --no-cov-on-fail --cov-branch"
 asyncio_mode = "strict"
 pythonpath = ["."]
 
@@ -72,6 +72,7 @@ pythonpath = ["."]
 source = ["pocket_cache"]
 omit = ["tests/*"]
 relative_files = true
+branch = true
 
 [tool.coverage.report]
 exclude_lines = [
